@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-2">
+     <div class="panel panel-default">
+      <div class="panel-heading">
+        Categories
+      </div>
+      <div class="panel-body">
+        <ul>
+          
+          {% for tag in tags %}
+            <li><a href="{% url 'media_app:tagged' tag.slug %}">{{ tag.name }}</a></li> 
+          {% empty %}
+            <li>No Tags</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    {% for post in posts %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          {{post.title}}          
+        </div>
+        <div class="panel-body">
+          {{post.time_added}}
+          <br />
+          <div class="row">
+            <div class="col-sm-2">
+              $
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-default btn-sm">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      There are no products, sorry.
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

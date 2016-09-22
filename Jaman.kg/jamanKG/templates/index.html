@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+
+{% block content%}
+
+<div class = "col-md-10 col-sm-12 col-xs-12 main"  class = "container-fluid">
+  <h3 class="page-header category_color">Новое</h3>
+      {{title|upper}}
+      {% for obj in object_list %}    
+       <div class = "col-md-3 col-sm-4 col-xs-12">
+          <h3> </h3>
+            {% if obj.image %}
+            <img src = '{{ obj.image.url }}' alt="..." class="img-rounded" width = "260" height = "200"/>
+              
+            {% endif %}
+
+            
+
+            <!-- <img src="..." alt="..."> -->
+
+            <h4 class = "content-info"> <a href = "{{ obj.get_absolute_url }}" class = "content-info">{{obj.title}} </a></h4>
+            
+            <div class="caption">
+              <span class="text-muted content-info">{{obj.publish}} <span class = "views-info">Просм: {{obj.views}}</span></span>
+                            
+              {% if obj.user.get_full_name %}
+              <p> Author: {{ obj.user.get_full_name }} </p>
+              {% endif %}
+
+              <!-- <p>{{obj.content|linebreaks|truncatechars:20}}</p>
+              <p><a href = '{{ obj.get_absolute_url }}' class="btn btn-primary" role="button">View</a> </p> -->
+
+            </div>
+        </div>
+        
+
+        <!-- {%cycle "" "<div class = 'col-sm-12'><hr/> </div><div class = 'row'>" %} -->
+
+
+      {% endfor %}
+</div>
+
+<div class = "text-center">
+  <ul class="pagination">
+
+    <!-- PREVIOUS/FIRST page choice -->    
+    {% if page_obj.number > 1 %}
+      <li> <a href = "?page=1">&laquo; Первая</a></li>
+    {% else %}
+      <li class = "disabled"><a href = "">&laquo; Первая</a></li>
+    {% endif %}
+
+    {% if page_obj.has_previous %}
+      <li> <a href="?page={{ page_obj.previous_page_number }}"> <<  </a></li>
+    {% else %}
+      <li class = "disabled"><a href = ""> << </a></li>
+      {% endif %}
+
+    <!-- Choosing current page --> 
+    {% for pg in page_obj.paginator.page_range %}
+              {% if page_obj.number == pg %}
+                  <li class="active"><a href="?page={{ pg }}">{{ pg }}</a></li>
+              {% else %}
+                  <li><a href="?page={{ pg }}">{{ pg }}</a></li>
+              {% endif %}
+          {% endfor %}
+
+    <!-- NEXT/LAST page choice -->
+    {% if page_obj.has_next %}
+      <li> <a href="?page={{ page_obj.next_page_number }}"> >>  </a></li>
+    {% else %}
+      <li class = "disabled"><a href = ""> >> </a></li>
+      {% endif %}
+
+      {% if page_obj.number < page_obj.paginator.num_pages %}
+      <li> <a href = "?page={{ page_obj.paginator.num_pages }}">&laquo; Последняя</a></li>
+    {% else %}
+      <li class = "disabled"><a href = "">&laquo; Последняя</a></li>
+    {% endif %}
+  </ul>
+</div>
+
+<a href = '/popular' class="btn btn-primary pull-right" role="button" style = "margin-top: 20px; margin-right:65px;">Смотреть все >></a>       
+
+{% endblock %}
+
+
+      
+
+      

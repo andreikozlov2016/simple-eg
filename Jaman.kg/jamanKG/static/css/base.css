@@ -1,0 +1,53 @@
+h4
+{
+	color: #0089e0 !important;
+}
+
+.category_color{
+	color: #0089e0;;;
+}
+.content-info{
+	margin-bottom: 0px;
+}
+
+.views-info{
+	margin-left: 40px;
+}
+
+#term-margins{
+	margin-right: 30px;
+	margin-left: 30px;
+}
+
+#joj{
+	position: relative;
+/*	margin-left: 50px;
+*/	margin-top: 50px
+}
+
+.wmd-panel{
+	margin-right: 0px !important;
+	margin-left: 0px !important;
+}
+
+.comment-reply{
+	display: none;
+}
+
+#detail-title{
+	margin-top: 100px;
+	margin-bottom: 20px; 
+}
+
+#video1{
+	margin-top: 0px !important;
+}
+
+.textarea{
+	height: 70px !important;
+	width: 300px;
+}
+
+.pagination{
+	margin-left: 200px;
+}
